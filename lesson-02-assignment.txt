@@ -1,0 +1,33 @@
+-- input manually
+
+--  new_Class = Course.create(coding_class_id:1,trimester_id:8,max_enrollment:5)
+
+--   TRANSACTION (1.0ms)  BEGIN immediate TRANSACTION /*application='DocRails'*/
+--   CodingClass Load (36.7ms)  SELECT "coding_classes".* FROM "coding_classes" WHERE "coding_classes"."id" = 1 LIMIT 1 /*application='DocRails'*/
+--   Trimester Load (0.3ms)  SELECT "trimesters".* FROM "trimesters" WHERE "trimesters"."id" = 8 LIMIT 1 /*application='DocRails'*/
+--   Course Create (1.4ms)  INSERT INTO "courses" ("coding_class_id", "trimester_id", "max_enrollment", "created_at", "updated_at") VALUES (1, 8, 5, '2025-03-24 00:38:40.579691', '2025-03-24 00:38:40.579691') RETURNING "id" /*application='DocRails'*/   
+--   TRANSACTION (10.4ms)  COMMIT T
+
+-- Question 1:
+doc-rails(dev)> new_Trimester = Trimester.find_by(year:"2026",term:"Spring")
+
+doc-rails(dev)* CodingClass.all.each do |coding_class|
+doc-rails(dev)*   Course.create(coding_class_id:coding_class.id,trimester_id:new_Trimester.id,max_enrollment:30)
+doc-rails(dev)> end
+
+-- Question 2:
+
+new_Student = Student.create(first_name:"Brandon",last_name:"Thomas",email:"bthomas@gmail.com")
+intro_Id = CodingClass.find_by(id:"1")
+enroll = Enrollment.create(course_id:intro_Id.id,student_id:new_Student.id)
+
+
+MentorEnrollmentAssignment.group(:mentor_id).count
+  MentorEnrollmentAssignment Count (10.0ms)  SELECT COUNT(*) AS "count_all", "mentor_enrollment_assignments"."mentor_id" AS "mentor_enrollment_assignments_mentor_id" 
+  FROM "mentor_enrollment_assignments" 
+  GROUP BY "mentor_enrollment_assignments"."mentor_id" /*application='DocRails'*/
+
+  Mentor.find_by(id:"31")
+
+  MentorEnrollmentAssignment.create(mentor_id:31,enrollment_id:enroll.id)
+  
