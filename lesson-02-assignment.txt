@@ -21,4 +21,23 @@ MentorEnrollmentAssignment.group(:mentor_id).count
   Mentor.find_by(id:"31")
 
   MentorEnrollmentAssignment.create(mentor_id:31,enrollment_id:enroll.id)
-  
+
+--Question 3:
+
+Who are the users of your application? Do you have different types of users or different roles?
+--The users of my application are anyone that wants to register to review movie titles.
+
+What are the core user scenarios or features of your app? 
+A core feature is that a user can review a movie, get a general movie average, and get a historical average within a certain time span.
+Ex. a movie my not have been well received when it came out, but years later is a cult classic. or it may not age well and the review average goes down within a certain time frame.
+
+
+--Question 4:
+Potential models
+1. users
+-first name, last name, email
+2. movies
+-rating, description of movie, date of movie release, comments from user
+3.rating
+-score, date score added, score for movie
+
