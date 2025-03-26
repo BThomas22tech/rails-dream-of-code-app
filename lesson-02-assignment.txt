@@ -1,0 +1,43 @@
+
+-- Question 1:
+doc-rails(dev)> new_trimester = Trimester.find_by(year:"2026",term:"Spring")
+
+doc-rails(dev)* CodingClass.all.each do |coding_class|
+doc-rails(dev)*   Course.create(coding_class_id:coding_class.id,trimester_id:new_Trimester.id,max_enrollment:30)
+doc-rails(dev)> end
+
+-- Question 2:
+
+new_student = Student.create(first_name:"Brandon",last_name:"Thomas",email:"bthomas@gmail.com")
+spring_course = Course.find_by(trimester_id:"8")
+enroll = Enrollment.create(course_id:spring_course.id,student_id:new_Student.id)
+
+
+MentorEnrollmentAssignment.group(:mentor_id).count
+  MentorEnrollmentAssignment Count (10.0ms)  SELECT COUNT(*) AS "count_all", "mentor_enrollment_assignments"."mentor_id" AS "mentor_enrollment_assignments_mentor_id" 
+  FROM "mentor_enrollment_assignments" 
+  GROUP BY "mentor_enrollment_assignments"."mentor_id" /*application='DocRails'*/
+
+  Mentor.find_by(id:"31")
+
+  MentorEnrollmentAssignment.create(mentor_id:31,enrollment_id:enroll.id)
+
+--Question 3:
+
+Who are the users of your application? Do you have different types of users or different roles?
+--The users of my application are anyone that wants to register to review movie titles.
+
+What are the core user scenarios or features of your app? 
+A core feature is that a user can review a movie, get a general movie average, and get a historical average within a certain time span.
+Ex. a movie my not have been well received when it came out, but years later is a cult classic. or it may not age well and the review average goes down within a certain time frame.
+
+
+--Question 4:
+Potential models
+1. users
+-first name, last name, email
+2. movies
+-rating, description of movie, date of movie release, comments from user
+3.rating
+-score, date score added, score for movie
+
