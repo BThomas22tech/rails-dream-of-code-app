@@ -1,6 +1,6 @@
 
 -- Question 1:
-doc-rails(dev)> new_Trimester = Trimester.find_by(year:"2026",term:"Spring")
+doc-rails(dev)> new_trimester = Trimester.find_by(year:"2026",term:"Spring")
 
 doc-rails(dev)* CodingClass.all.each do |coding_class|
 doc-rails(dev)*   Course.create(coding_class_id:coding_class.id,trimester_id:new_Trimester.id,max_enrollment:30)
@@ -8,9 +8,9 @@ doc-rails(dev)> end
 
 -- Question 2:
 
-new_Student = Student.create(first_name:"Brandon",last_name:"Thomas",email:"bthomas@gmail.com")
-intro_Id = CodingClass.find_by(id:"1")
-enroll = Enrollment.create(course_id:intro_Id.id,student_id:new_Student.id)
+new_student = Student.create(first_name:"Brandon",last_name:"Thomas",email:"bthomas@gmail.com")
+spring_course = Course.find_by(trimester_id:"8")
+enroll = Enrollment.create(course_id:spring_course.id,student_id:new_Student.id)
 
 
 MentorEnrollmentAssignment.group(:mentor_id).count
