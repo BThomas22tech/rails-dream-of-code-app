@@ -1,10 +1,11 @@
-1.The table I need to add is a topics table. I will call the table Topics.
-2. The columns necessary are Topic.id,topic_name,lesson_id,course_id.
+1.The table I need to add is a joins table. lesson_topics table.
+2. The columns necessary are Topic.id,name. Join table will have lesson_id,topic_id.
 I don't believe I will need any other columns.
 Topics: topic.id,topic_name,lesson_id,course_id
 bin/rails generate migration create_topics 
 
 
 
-bin/rails generate migration create_topic_lesson topic,lesson
+bin/rails generate migration CreateJoinTableLessonsTopics lesson topic
+
 Topic.create!(topic_name:"SQL",lesson_id:Lesson.first.id,course_id:Course.first.id)
