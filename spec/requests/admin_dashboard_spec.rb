@@ -10,19 +10,15 @@ RSpec.describe 'Dashboard', type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it 'displays the current trimester' do
-    end
 
     it 'displays links to the courses in the current trimester' do
-    end
-
-    it 'displays the upcoming trimester' do
     end
 
     it 'displays links to the courses in the upcoming trimester' do
     end
     
 end
+
 describe 'GET /dashboard' do
   before do
     current_trimester = Trimester.create!(
@@ -41,10 +37,21 @@ describe 'GET /dashboard' do
         end_date: Date.today - 2.months,
         application_deadline: Date.today - 16.days,
     )
+    upcoming_trimester = Trimester.create!(
+        term: 'Spring',
+        year: 2025,
+        start_date: Date.today + 5.months,
+        end_date: Date.today + 8.months,
+        application_deadline: Date.today + 3.months
+          )
 end
 it 'displays the current trimester' do
     get "/dashboard"
     expect(response.body).to include("your string here")
+end
+it 'displays the upcoming trimester' do
+    get "/dashboard"
+    expect(response.body).to include("Spring - 2025")
 end
 end
 end

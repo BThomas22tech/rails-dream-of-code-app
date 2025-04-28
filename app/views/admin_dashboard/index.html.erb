@@ -5,8 +5,17 @@
  <ul>
  <% @current_trimester.courses.each do |course| %>
    <li><a href=""><%= course.coding_class.title %></a></li>
- <% end %>
+   <%end%>
 </ul>
 <% else %>
 <p> no current trimester</p>
+
+<%end%>
+
+<% if @upcoming_trimester %>
+<h2>Upcoming Trimester</h2>
+<p><%= "#{@upcoming_trimester.term} - #{@upcoming_trimester.year}" %></p>
+<% else %>
+<p> Upcoming Trimester </p>
 <% end %>
+

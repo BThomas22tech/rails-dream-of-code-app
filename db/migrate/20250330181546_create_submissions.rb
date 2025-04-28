@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateSubmissions < ActiveRecord::Migration[8.0]
   def change
     create_table :submissions do |t|
@@ -7,9 +9,8 @@ class CreateSubmissions < ActiveRecord::Migration[8.0]
       t.string :pull_request_url
       t.string :review_result
       t.datetime :reviewed_at
-      
-      t.timestamps
 
+      t.timestamps
     end
   end
 end
