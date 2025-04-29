@@ -29,4 +29,5 @@ Rails.application.routes.draw do
   get '/mentors', to: 'mentors#index'
   get '/mentors/:id', to: 'mentors#show'
   get '/dashboard/', to: 'admin_dashboard#index'
+  get '/courses/:id', to: 'courses#show'
 end
