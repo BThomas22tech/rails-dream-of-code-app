@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/models/course_spec.rb
 require 'rails_helper'
 
@@ -10,10 +12,10 @@ RSpec.describe Course, type: :model do
   # let(:trimester) defines the trimester variable
   # let(:course) defines the course variable
 
-  let(:coding_class) { 
+  let(:coding_class) do
     CodingClass.create(title: 'Test Class')
-  }
-  let(:trimester) { 
+  end
+  let(:trimester) do
     Trimester.create(
       year: '2025',
       term: 'Winter',
@@ -21,12 +23,12 @@ RSpec.describe Course, type: :model do
       end_date: '2025-04-30',
       application_deadline: '2024-12-15'
     )
-  }
-  let(:course) {
-    Course.create(coding_class: coding_class,
-                  trimester: trimester)
-  }
-    
+  end
+  let(:course) do
+    described_class.create(coding_class: coding_class,
+                           trimester: trimester)
+  end
+
   # We define a "describe block" for each method or set of behaviors we're testing
   describe 'validations' do
     it 'is valid when both coding_class and trimester are present' do
@@ -35,12 +37,12 @@ RSpec.describe Course, type: :model do
 
     it 'is not valid without a coding_class' do
       course.coding_class = nil
-      expect(course).to_not be_valid
+      expect(course).not_to be_valid
     end
 
     it 'is not valid without a trimester' do
       course.trimester = nil
-      expect(course).to_not be_valid
+      expect(course).not_to be_valid
     end
   end
 
@@ -65,20 +67,26 @@ RSpec.describe Course, type: :model do
       # students enrolled in the test course defined above.
       #
       # Create some test student records
-      let!(:enrolled_student_1) {
+      let!(:enrolled_student_1) do
         Student.create!(
           first_name: 'Student',
-          last_name: 'One', 
+          last_name: 'One',
           email: 'studentone@example.com'
         )
-      }
-      let!(:enrolled_student_2) {
+      end
+      let(:expected_results) do
+        [
+          'Student One',
+          'Student Two'
+        ]
+      end
+      let!(:enrolled_student_2) do
         Student.create!(
           first_name: 'Student',
-          last_name: 'Two', 
+          last_name: 'Two',
           email: 'studenttwo@example.com'
         )
-      }
+      end
 
       # The code in a "before block" runs before
       # the tests in this context are executed.
@@ -87,13 +95,6 @@ RSpec.describe Course, type: :model do
         Enrollment.create!(student: enrolled_student_1, course: course)
         Enrollment.create!(student: enrolled_student_2, course: course)
       end
-
-      let(:expected_results) {
-        [
-          'Student One',
-          'Student Two'
-        ]
-      }
 
       it 'returns an array of student names' do
         expect(course.student_name_list).to eq(expected_results)
@@ -115,20 +116,27 @@ RSpec.describe Course, type: :model do
 
     context 'when there are students enrolled in the course' do
       # Create student records with dummy data
-      let(:enrolled_student_1) {
+      let(:enrolled_student_1) do
         Student.create!(
           first_name: 'Student',
-          last_name: 'One', 
+          last_name: 'One',
           email: 'studentone@example.com'
         )
-      }
-      let(:enrolled_student_2) {
+      end
+      # This is what we expect the method to return
+      let(:expected_results) do
+        [
+          'studentone@example.com',
+          'studenttwo@example.com'
+        ]
+      end
+      let(:enrolled_student_2) do
         Student.create!(
           first_name: 'Student',
-          last_name: 'Two', 
+          last_name: 'Two',
           email: 'studenttwo@example.com'
         )
-      }
+      end
 
       # Create enrollment records for the course
       before do
@@ -136,17 +144,9 @@ RSpec.describe Course, type: :model do
         Enrollment.create!(student: enrolled_student_2, course: course)
       end
 
-      # This is what we expect the method to return
-      let(:expected_results) {
-        [
-          'studentone@example.com',
-          'studenttwo@example.com'
-        ]
-      }
       it 'returns an array of student email addresses' do
         expect(course.student_email_list).to eq(expected_results)
       end
     end
   end
 end
-

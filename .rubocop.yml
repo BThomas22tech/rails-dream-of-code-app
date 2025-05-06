@@ -1,0 +1,25 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-rspec_rails
+
+AllCops:
+  TargetRubyVersion: 3.2 # or your Ruby version
+  Exclude:
+    - 'db/schema.rb'
+
+RSpec:
+  Enabled: true
+
+Layout/LineLength:
+  Max: 120
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/DescribeClass:
+  Enabled: true
+
+RSpec/EmptyExampleGroup:
+  Enabled: true
