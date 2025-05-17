@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   resources :enrollments
   resources :mentor_enrollment_assignments
   resources :lessons
-  resources :courses
   resources :coding_classes
   resources :trimesters
+  resources :courses do
+    resources :submissions
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # http_method "/path", to: "controller#action"
@@ -30,4 +32,6 @@ Rails.application.routes.draw do
   get '/mentors/:id', to: 'mentors#show'
   get '/dashboard/', to: 'admin_dashboard#index'
   get '/courses/:id', to: 'courses#show'
+  get '/courses/new', to: 'courses#new'
+  post '/courses', to: 'courses#create'
 end
