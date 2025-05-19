@@ -6,8 +6,8 @@ class SubmissionsController < ApplicationController
     @course = Course.find(params[:course_id])
     @submission = Submission.new # TODO: What set of enrollments should be listed in the dropdown?
     @lessons = @course.lessons || [] # TODO: What set of lessons should be listed in the dropdown?
-    # @enrollments = @course.enrollments || []
-    @enrollments = Enrollment.all
+    @enrollments = @course.enrollments || []
+    # @enrollments = Enrollment.all
      @coding_classes = CodingClass.all 
      @trimesters = Trimester.all
   end
