@@ -23,6 +23,16 @@
   </div>
 
   <div class="form-group">
+<%= form.label :coding_class_id %>
+<%= form.collection_select :coding_class_id, @coding_classes, :id, :title, prompt: 'Select Coding Class' %>
+</div>
+
+<div class="form-group">
+<%= form.label :trimester_id %>
+<%= form.collection_select :trimester_id, @trimesters, :id, :display_name, prompt: 'Select Trimester' %>
+</div>
+
+  <div class="form-group">
     <%= form.label :url, 'URL', class: 'form-text' %>
     <%= form.text_field :url, class: 'form-control' %>
   </div>

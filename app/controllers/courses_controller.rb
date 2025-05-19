@@ -18,6 +18,8 @@ end
   # GET /courses/new
   def new
     @course = Course.new
+    @coding_class = CodingClass.all
+    @trimesters = Trimester.all
   end
 
   # GET /courses/1/edit
@@ -25,6 +27,7 @@ end
 
   # POST /courses or /courses.json
  def create
+    
     @course = Course.new(course_params)
 
     respond_to do |format|

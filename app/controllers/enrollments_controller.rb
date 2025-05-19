@@ -68,4 +68,5 @@ class EnrollmentsController < ApplicationController
   def enrollment_params
     params.expect(enrollment: %i[course_id student_id final_grade])
   end
+ 
 end
